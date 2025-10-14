@@ -1,0 +1,40 @@
+const input = require('readline-sync'); 
+let appNameDisplay = "Fashion Dream App"; //string variable for title page//
+console.log(`Welcome to the ${appNameDisplay}!`); //first interaction user has when opening the app//
+
+let TopStyle = true; //top is one of the garment options//
+if (!TopStyle) {
+    console.log("Please pick a top style to continue.");
+} else {
+    console.log("Now that you've selected a top style, let's select the sleeve length.");
+}
+let sleeveLength = "short"; //sleeve length is another design choice//
+if (sleeveLength === "short") {
+    console.log("You selected a short sleeve top, here are the sleeve options:"); //basic style has been created//
+}
+let sleeveType = [
+    ['Cap Sleeve', 'Length 4"'], //nested array for specific short sleeve types including length//
+    ['Basic Sleeve', 'Length 6"'],
+    ['Puff Sleeve', 'Length 5"'],
+    ['Flutter Sleeve', 'Length 6"']
+];
+for (let i = 0; i < sleeveType.length; i++) {
+    console.log(`Option ${i + 1}: ${sleeveType[i][0]} - ${sleeveType[i][1]}`);
+}
+
+let color = "Let's pick a color for your top:"; //string variable for color selection//
+console.log(color);
+
+const colorOptions = ['Black', 'Gray', 'White', 'Pink', 'Purple', 'Blue', 'Green', 'Yellow', 'Orange', 'Red', 'Brown']; //allows for alterations to the color options without rewriting everything//
+for (let i = 0; i < colorOptions.length; i++) {
+    console.log(`${i + 1}: ${colorOptions[i]}`);
+}
+
+const finishedDesign = {
+    topStyle: "Basic Top",
+    sleeveType: "Cap Sleeve",
+    sleeveLength: 'Length 4"',
+    color: "Blue"
+}; //object to hold the final design selections//
+console.log("Here is your finished design:");
+console.log(finishedDesign);
