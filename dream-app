@@ -1,40 +1,71 @@
+/*
+
+For this activity, think about an application that you have always wanted to exist–or 
+about features you would like to add or change on an existing application.  
+Next, consider the skills you have learned from each module of the course and 
+write a description of how you could use those skills to create or update your app.
+Finally, write code examples to represent one use case for the skills from each module.
+
+*/
+
 const input = require('readline-sync'); 
-let appNameDisplay = "Fashion Dream App"; //string variable for title page//
-console.log(`Welcome to the ${appNameDisplay}!`); //first interaction user has when opening the app//
 
-let TopStyle = true; //top is one of the garment options//
-if (!TopStyle) {
-    console.log("Please pick a top style to continue.");
-} else {
-    console.log("Now that you've selected a top style, let's select the sleeve length.");
-}
-let sleeveLength = "short"; //sleeve length is another design choice//
-if (sleeveLength === "short") {
-    console.log("You selected a short sleeve top, here are the sleeve options:"); //basic style has been created//
-}
-let sleeveType = [
-    ['Cap Sleeve', 'Length 4"'], //nested array for specific short sleeve types including length//
-    ['Basic Sleeve', 'Length 6"'],
-    ['Puff Sleeve', 'Length 5"'],
-    ['Flutter Sleeve', 'Length 6"']
-];
-for (let i = 0; i < sleeveType.length; i++) {
-    console.log(`Option ${i + 1}: ${sleeveType[i][0]} - ${sleeveType[i][1]}`);
-}
+let userInfo = {userName: "TopStylist72", level: 29, theme: ["Sweet", "Pastel", "Puppies"]}; //object to hold user information for the app
 
-let color = "Let's pick a color for your top:"; //string variable for color selection//
-console.log(color);
+let occassionType = ["Casual", "Dressy", "Formal"];
+let patternOptions = ["Plaid", "Floral", "Animal Print"];
 
-const colorOptions = ['Black', 'Gray', 'White', 'Pink', 'Purple', 'Blue', 'Green', 'Yellow', 'Orange', 'Red', 'Brown']; //allows for alterations to the color options without rewriting everything//
-for (let i = 0; i < colorOptions.length; i++) {
-    console.log(`${i + 1}: ${colorOptions[i]}`);
+let sleeveType = ["Inset", "Puff", "Bell"];
+let sleeveLength = ["Short", "3/4", "Long"];
+
+let skirtLength = ["Mini", "Midi", "Maxi"];
+let skirtSihouette = ["Pencil", "A-Line", "Circle"];
+
+let colorOptions = ["Black", "Gray", "White"]; // basic starting color options for user selection
+    ["Red", "Yellow", "Blue"];
+    ["Orange", "Green", "Purple"];
+
+console.log("Welcome to Fashion Styling Dream!"); //first output user sees when opening the app
+const userChoice = input.question("Would you like to create a new dress (yes/no)?: "); //first prompt for user interaction
+
+if (userChoice === "no") {
+    console.log("How about an example to insprire your creative spirit!"); // falsy boolean for program determined output (else, if)
+
+    let randomOccassion = occassionType[Math.floor(Math.random() * occassionType.length)]; // using math.random to generate a random occassion type
+    let randomPattern = patternOptions[Math.floor(Math.random() * patternOptions.length)]; // using math.random to generate a random fabric pattern
+    let randomSleeveType = sleeveType[Math.floor(Math.random() * sleeveType.length)]; // using math.random to generate a random sleeve type
+    let randomSleeveLength = sleeveLength[Math.floor(Math.random() * sleeveLength.length)]; // using math.random to generate a random sleeve length
+    let randomSkirtType = skirtSihouette[Math.floor(Math.random() * skirtSihouette.length)]; // using math.random to generate a random skirt silhouette
+    let randomLength = skirtLength[Math.floor(Math.random() * skirtLength.length)]; // using math.random to generate a random skirt length
+    let randomColor = colorOptions[Math.floor(Math.random() * colorOptions.length)]; // using math.random to generate a random color option
+
+    console.log("Here's a " + randomColor + " " + randomPattern + " dress with " + randomSleeveType + " " + randomSleeveLength + " sleeves" + " for a " + randomOccassion + " occasion!"); //output for randomly generated garment design
+
+console.log("Fashion is all about fun and self expression, so let's get creative!"); //output for user lead design process
+
+} else if (userChoice === "yes") {
+    console.log("Let's start designing your garment!"); //truthy boolean for user lead output
+    
+    const garmentName = input.question("What would you like to name your design?:  "); //prompt for user to name their design
+        let garmentDesign = {garmentName: garmentName}; //object to hold the name of the user's design
+    
+    const garmentOccassion = input.question("Start by selecting an occassion type for this piece " + occassionType.join(", ") + ": "); // prompt for type of occassion selection
+    const garmentPattern = input.question("Pick a fabric pattern " + patternOptions.join(", ") + ": "); //prompt for pattern selection
+    const garmentSleeveType = input.question("Next, choose a sleeve type " + sleeveType.join(", ") + ": "); //prompt for type of sleeve selection
+    const garmentSleeveLength = input.question("Now, select a sleeve length " + sleeveLength.join(", ") + ": "); //prompt for length of sleeve
+    const garmentSkirtType = input.question("Choose a skirt type " + skirtSihouette.join(", ") + ": "); //prompt for type of skirt selection
+    const garmentSkirtLength = input.question("Select a skirt length " + skirtLength.join(", ") + ": "); //prompt for length of skirt
+
+        let neutralColors = colorOptions.slice(0, 3); //using slice to create a new array for neutral color options
+        let primaryColors = colorOptions.slice(1, 3); //using slice to create a new array for primary color options
+        let secondaryColors = colorOptions.slice(2, 3); //using slice to create a new array for secondary color options
+
+        console.log("Finally, select up to 3 colors: " + neutralColors + ", " + primaryColors + ", " + secondaryColors ); //prompt for color selection
+        const colorChoice = input.question("Please enter your color choices separated by commas: "); //prompt for user to input their color choices
+            let garmentColors = {colorChoice: colorChoice.split(", ")}; //object to hold the user's color choices, using split to turn the string input into an array
+        
+        let newColors = colorOptions.push("Pink", "Purple", "Teal"); // using push method to add more values to array
+  
+    console.log("Here's your design: The fabulous" + " \uD83C\uDF1F " + garmentDesign.garmentName + " \uD83C\uDF1F " + garmentPattern + "in " + garmentColors.colorChoice.join(", ") + " with "+ garmentSleeveLength + " " + garmentSleeveType + " sleeves" + " for a " + garmentOccassion + " occasion."); //output for user garment selection including unicode
+
 }
-
-const finishedDesign = {
-    topStyle: "Basic Top",
-    sleeveType: "Cap Sleeve",
-    sleeveLength: 'Length 4"',
-    color: "Blue"
-}; //object to hold the final design selections//
-console.log("Here is your finished design:");
-console.log(finishedDesign);
